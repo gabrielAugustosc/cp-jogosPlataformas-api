@@ -1,0 +1,110 @@
+# 🎮 API de Jogos e Plataformas — Checkpoint 2
+
+API RESTful com **Spring Boot** para gerenciamento de jogos e plataformas de videogame.
+Evolução do Checkpoint 1: agora com persistência de dados via **Spring Data JPA** e banco **MySQL**.
+
+
+## 🐳 Subindo o Banco de Dados com Docker
+
+### Opção 1 — Docker Compose (recomendado)
+
+```bash
+docker-compose up -d
+```
+
+### Opção 2 — Comando Docker direto
+
+```bash
+docker run -d \
+  --name jogosplataformas-mysql \
+  -e MYSQL_ROOT_PASSWORD=root \
+  -e MYSQL_DATABASE=jogosplataformas_db \
+  -p 3306:3306 \
+  mysql:8.0
+```
+
+Aguarde alguns segundos para o MySQL inicializar antes de rodar a aplicação.
+
+---
+
+## ▶️ Como Rodar a Aplicação
+
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/gabrielAugustosc/cp-jogosPlataformas-api.git
+   cd cp-jogosPlataformas-api
+   ```
+
+2. **Suba o banco de dados:**
+   ```bash
+   docker-compose up -d
+   ```
+
+3. **Execute a aplicação:**
+   ```bash
+   ./mvnw spring-boot:run
+   ```
+
+A aplicação estará disponível em: `http://localhost:8080`
+
+Swagger UI: `http://localhost:8080/swagger-ui.html`
+
+---
+
+## 🔗 Endpoints
+
+### Jogos — `/jogos`
+
+| Método   | Rota          | Descrição              |
+|----------|---------------|------------------------|
+| `GET`    | `/jogos`      | Listar todos os jogos  |
+| `GET`    | `/jogos/{id}` | Buscar jogo por ID     |
+| `POST`   | `/jogos`      | Cadastrar novo jogo    |
+| `PUT`    | `/jogos/{id}` | Atualizar jogo         |
+| `DELETE` | `/jogos/{id}` | Deletar jogo           |
+
+### Plataformas — `/plataformas`
+
+| Método   | Rota                 | Descrição                   |
+|----------|----------------------|-----------------------------|
+| `GET`    | `/plataformas`        | Listar todas as plataformas |
+| `GET`    | `/plataformas/{id}`   | Buscar plataforma por ID    |
+| `POST`   | `/plataformas`        | Cadastrar nova plataforma   |
+| `PUT`    | `/plataformas/{id}`   | Atualizar plataforma        |
+| `DELETE` | `/plataformas/{id}`   | Deletar plataforma          |
+
+---
+
+## 📦 Exemplos de Requisição
+
+### POST /jogos
+```json
+{
+  "id": 1,
+  "titulo": "God of War",
+  "genero": "Ação",
+  "anoLancamento": 2018,
+  "nota": 9.8,
+  "disponivel": true,
+  "descricao": "Aventura épica nórdica com Kratos e Atreus"
+}
+```
+
+### POST /plataformas
+```json
+{
+  "id": 1,
+  "nome": "PlayStation 5",
+  "fabricante": "Sony",
+  "anoLancamento": 2020,
+  "preco": 3999.99,
+  "ativa": true,
+  "geracao": "9ª Geração"
+}
+```
+
+---
+
+## 👨‍💻 Autor
+
+Gabriel Augusto — Checkpoint 2 | FIAP 2026

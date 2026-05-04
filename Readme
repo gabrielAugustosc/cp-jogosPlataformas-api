@@ -16,11 +16,13 @@ docker-compose up -d
 
 ```bash
 docker run -d \
-  --name jogosplataformas-mysql \
-  -e MYSQL_ROOT_PASSWORD=root \
-  -e MYSQL_DATABASE=jogosplataformas_db \
-  -p 3306:3306 \
-  mysql:8.0
+    --name mysql \
+    --rm \
+    -e MYSQL_ROOT_PASSWORD=root_pwd \
+    -e MYSQL_USER=new_user \
+    -e MYSQL_PASSWORD=my_pwd \
+    -p 3306:3306 \
+    mysql
 ```
 
 Aguarde alguns segundos para o MySQL inicializar antes de rodar a aplicação.
@@ -49,31 +51,6 @@ A aplicação estará disponível em: `http://localhost:8080`
 
 Swagger UI: `http://localhost:8080/swagger-ui.html`
 
----
-
-## 🔗 Endpoints
-
-### Jogos — `/jogos`
-
-| Método   | Rota          | Descrição              |
-|----------|---------------|------------------------|
-| `GET`    | `/jogos`      | Listar todos os jogos  |
-| `GET`    | `/jogos/{id}` | Buscar jogo por ID     |
-| `POST`   | `/jogos`      | Cadastrar novo jogo    |
-| `PUT`    | `/jogos/{id}` | Atualizar jogo         |
-| `DELETE` | `/jogos/{id}` | Deletar jogo           |
-
-### Plataformas — `/plataformas`
-
-| Método   | Rota                 | Descrição                   |
-|----------|----------------------|-----------------------------|
-| `GET`    | `/plataformas`        | Listar todas as plataformas |
-| `GET`    | `/plataformas/{id}`   | Buscar plataforma por ID    |
-| `POST`   | `/plataformas`        | Cadastrar nova plataforma   |
-| `PUT`    | `/plataformas/{id}`   | Atualizar plataforma        |
-| `DELETE` | `/plataformas/{id}`   | Deletar plataforma          |
-
----
 
 ## 📦 Exemplos de Requisição
 
